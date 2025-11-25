@@ -8,10 +8,14 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: mongodb
-    targetRevision: 15.5.0
+    targetRevision: 18.1.10
     helm:
       releaseName: portfolio-mongodb
       values: |
+        image:
+          registry: docker.io
+          repository: bitnamilegacy/mongodb
+          tag: 8.2.2
         auth:
           rootUser: root
           rootPassword: root_password
@@ -21,9 +25,6 @@ spec:
             - app_password
           databases:
             - portfolio_content
-        image:
-          registry: docker.io
-          repository: bitnamicharts/mongodb
         persistence:
           enabled: true
           size: 20Gi

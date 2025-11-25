@@ -19,7 +19,7 @@ spec:
               password: app_password
               database: portfolio_db
         image:
-          registry: registry-1.docker.io
+          registry: docker.io
           repository: bitnamicharts/postgresql
         primary:
           persistence:

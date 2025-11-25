@@ -22,7 +22,7 @@ spec:
           databases:
             - portfolio_content
         image:
-          registry: registry-1.docker.io
+          registry: docker.io
           repository: bitnamicharts/mongodb
         persistence:
           enabled: true

@@ -13,8 +13,8 @@ spec:
       releaseName: portfolio-mongodb
       values: |
         image:
-          registry: docker.io
-          repository: bitnamilegacy/mongodb
+          registry: registry-1.docker.io
+          repository: bitnami/mongodb
           tag: 8.2.2
         auth:
           rootUser: root

@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: postgresql
-    targetRevision: 15.5.21 # 버전은 나중에 바꿔도 됨
+    targetRevision: 16.4.5
     helm:
       releaseName: portfolio-postgres
       values: |

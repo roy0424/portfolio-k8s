@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: mongodb
-    targetRevision: 15.6.0
+    targetRevision: 16.4.3
     helm:
       releaseName: portfolio-mongodb
       values: |

@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: portfolio-mongodb
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: mongodb
+    targetRevision: 15.6.0
+    helm:
+      releaseName: portfolio-mongodb
+      values: |
+        auth:
+          rootUser: root
+          rootPassword: root_password
+          usernames:
+            - app_user
+          passwords:
+            - app_password
+          databases:
+            - portfolio_content
+        image:
+          tag: 7.0.14-debian-12-r0
+        persistence:
+          enabled: true
+          size: 20Gi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: portfolio-db
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+

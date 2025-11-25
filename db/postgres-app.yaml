@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: portfolio-postgres
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: postgresql
+    targetRevision: 15.5.21 # 버전은 나중에 바꿔도 됨
+    helm:
+      releaseName: portfolio-postgres
+      values: |
+        global:
+          postgresql:
+            auth:
+              username: app_user
+              password: app_password
+              database: portfolio_db
+        image:
+          tag: 16.4.0-debian-12-r18
+        primary:
+          persistence:
+            enabled: true
+            size: 20Gi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: portfolio-db
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+

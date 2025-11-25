@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: postgresql
-    targetRevision: 16.4.5
+    targetRevision: 15.5.0
     helm:
       releaseName: portfolio-postgres
       values: |
@@ -18,6 +18,9 @@ spec:
               username: app_user
               password: app_password
               database: portfolio_db
+        image:
+          registry: registry-1.docker.io
+          repository: bitnamicharts/postgresql
         primary:
           persistence:
             enabled: true

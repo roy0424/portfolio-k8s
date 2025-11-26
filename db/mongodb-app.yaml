@@ -15,7 +15,7 @@ spec:
         image:
           registry: registry-1.docker.io
           repository: bitnami/mongodb
-          tag: 8.2.2
+          tag: latest
         auth:
           rootUser: root
           rootPassword: root_password
@@ -28,6 +28,10 @@ spec:
         persistence:
           enabled: true
           size: 20Gi
+        service:
+          type: NodePort
+          nodePorts:
+            mongodb: 30017
   destination:
     server: https://kubernetes.default.svc
     namespace: portfolio-db

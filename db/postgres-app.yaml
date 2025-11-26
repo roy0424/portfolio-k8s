@@ -21,11 +21,15 @@ spec:
         image:
           registry: registry-1.docker.io
           repository: bitnami/postgresql
-          tag: 18.1.0
+          tag: latest
         primary:
           persistence:
             enabled: true
             size: 20Gi
+          service:
+            type: NodePort
+            nodePorts:
+              postgresql: 30432
   destination:
     server: https://kubernetes.default.svc
     namespace: portfolio-db

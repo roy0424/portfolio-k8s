@@ -1,3 +1,9 @@
 .DS_Store
 *.swp
 *.log
+
+# Kubernetes Secrets (민감한 정보)
+db/*-secret.yaml
+
+# 예제 파일은 Git에 포함
+!db/*-secret.example.yaml

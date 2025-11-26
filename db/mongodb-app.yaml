@@ -18,13 +18,11 @@ spec:
           tag: latest
         auth:
           rootUser: root
-          rootPassword: root_password
           usernames:
-            - app_user
-          passwords:
-            - app_password
+            - kyhan
           databases:
             - portfolio_content
+          existingSecret: portfolio-mongodb-credentials
         persistence:
           enabled: true
           size: 20Gi

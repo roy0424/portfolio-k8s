@@ -15,8 +15,11 @@ spec:
         global:
           postgresql:
             auth:
-              username: app_user
-              password: app_password
+              existingSecret: portfolio-postgres-credentials
+              secretKeys:
+                adminPasswordKey: password
+                userPasswordKey: password
+              username: kyhan
               database: portfolio_db
         image:
           registry: registry-1.docker.io

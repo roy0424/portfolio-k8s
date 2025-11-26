@@ -1,35 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: portfolio-mongodb
+  name: portfolio-redis
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-    chart: mongodb
-    targetRevision: 18.1.10
+    chart: redis
+    targetRevision: 24.0.0
     helm:
-      releaseName: portfolio-mongodb
+      releaseName: portfolio-redis
       values: |
         image:
           registry: registry-1.docker.io
-          repository: bitnami/mongodb
+          repository: bitnami/redis
           tag: latest
         auth:
-          rootUser: root
-          usernames:
-            - kyhan
-          databases:
-            - portfolio_content
-          existingSecret: portfolio-mongodb-credentials
-        persistence:
-          enabled: true
-          size: 20Gi
-        service:
-          type: NodePort
-          nodePorts:
-            mongodb: "30017"
+          existingSecret: portfolio-redis-credentials
+          existingSecretPasswordKey: redis-password
+        master:
+          persistence:
+            enabled: true
+            size: 8Gi
+          service:
+            type: NodePort
+            nodePorts:
+              redis: "30379"
+        replica:
+          replicaCount: 0
   destination:
     server: https://kubernetes.default.svc
     namespace: portfolio-db
@@ -39,4 +38,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
